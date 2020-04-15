@@ -141,7 +141,7 @@ namespace Nile
             }
         }
 
-        public string[] GetAllNames(string Name, int Position)
+        public string[] GetAllNames(int Position)
         {
             try
             {
@@ -154,6 +154,35 @@ namespace Nile
                 {
                     throw new ArgumentNullException("Position");
                 }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format("{0}->{1}", System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName, ex.Message));
+            }
+        }
+
+        public bool RemoveAll(int Position)
+        {
+            try
+            {
+                if (false == m_dictAll.ContainsKey(Position))
+                {
+                    throw new ArgumentNullException(string.Format("No specified position: {0} in DataTable", Position));
+                }
+
+                return m_dictAll.Remove(Position);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(string.Format("{0}->{1}", System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName, ex.Message));
+            }
+        }
+
+        public void RemoveAll()
+        {
+            try
+            {
+                m_dictAll.Clear();
             }
             catch (Exception ex)
             {
@@ -181,6 +210,7 @@ namespace Nile
 
         public void Reset()
         {
+            string str = string.Format("");
             throw new System.NotImplementedException("To implemented once needed.");
         }
 
