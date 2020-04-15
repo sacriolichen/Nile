@@ -17,6 +17,7 @@ namespace ResultReport
         public DutInfo Dutinfo;
         private DateTime StartTime;
         private string FullName;
+        //The ID indicates one time of DUT test.
         private string ExecutionID = string.Empty;
 
         public ReportController(string ExecutionID, string SerialNumber)
@@ -27,6 +28,10 @@ namespace ResultReport
             FullName = CreateTestRecord(StartTime, SerialNumber);
         }
 
+        /// <summary>
+        /// Init instance by ExecutionID
+        /// </summary>
+        /// <param name="ExecutionID"></param>
         public ReportController(string ExecutionID)
         {
             this.ExecutionID = ExecutionID;
@@ -35,6 +40,7 @@ namespace ResultReport
             FullName = CreateTestRecord(StartTime);
         }
 
+        // to trigger event when item starts
         public void ItemStarted(object sender, ItemStartEventArgs e)
         {
             try
@@ -150,6 +156,8 @@ namespace ResultReport
             }
             return dictPointInfo;
         }
+
+        //to trigger event when an item done
         public void ItemEnded(object sender, ItemEndEventArgs e)
         {
             try
@@ -203,6 +211,8 @@ namespace ResultReport
                 throw new Exception(ex.Message);
             }
         }
+
+        //preparing test record.
         private string CreateTestRecord(DateTime TimeStamp, string SerialNumber = null)
         {
             string strFileName = string.Empty;
@@ -229,6 +239,7 @@ namespace ResultReport
             return strFileName;
         }
 
+        //open Json file to update record
         private JObject OpenFile()
         {
             JObject joFile = null;
@@ -244,6 +255,7 @@ namespace ResultReport
             return joFile;
         }
 
+        // compare value against limit(s)
         public static string JudgeResultStatus(object Value, ResultValueTypes ValueType, int CompareRule, object Limit1 = null, object Limit2 = null)
         {
             try
@@ -368,6 +380,7 @@ namespace ResultReport
             return CommonTags.TestResult_PointStatus_Un;
         }
 
+        //to execute equal compare
         public static string EqualCompare<T>(T Value, T Limit1)
         {
             try

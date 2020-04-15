@@ -12,6 +12,9 @@ namespace Nile.Definition
 
     }
 
+    /// <summary>
+    /// A class of measure point
+    /// </summary>
     public class MeasurePoint
     {
         public string MeasPointID { get; set; }
@@ -37,14 +40,17 @@ namespace Nile.Definition
         }
     }
 
+    /// <summary>
+    /// A class of output info collection
+    /// </summary>
     public class OutputInfo : List<MeasurePoint>
     {
-        public string GUID { get; set; }
+        //public string GUID { get; set; }
         public OutputInfo()
         { }
         public OutputInfo(string GUID)
         {
-            this.GUID = GUID;
+            //this.GUID = GUID;
         }
 
         public MeasurePoint GetPointByPointID(string MeasurePointID)
@@ -79,18 +85,6 @@ namespace Nile.Definition
         }
     }
 
-    //public class InputInfo : Dictionary<string, object>
-    //{
-    //    //public string GUID { get; set; }
-    //    public InputInfo()
-    //    {
-    //    }
-
-    //    //public InputInfo(string GUID)
-    //    //{
-    //    //    this.GUID = GUID;
-    //    //}
-    //}
 
     /// <summary>
     /// The info is to write test plan file
@@ -112,20 +106,9 @@ namespace Nile.Definition
     }
 
     /// <summary>
-    /// The info get from file and used in testing
+    /// Necessary info to run a test.
+    /// Consists of basic info, input and ouputspec
     /// </summary>
-    //public class TestItemInfoRead : TestItemInfoBase
-    //{
-    //    public string GUID { get; set; }
-    //    public TestItemInfoRead(string GUID, string ItemName, string FileName, string Method)
-    //    {
-    //        //this.GUID = GUID;
-    //        //this.ItemName = ItemName;
-    //        //this.FileName = FileName;
-    //        //this.Method = Method;
-    //    }
-    //}
-
     public class TestItem
     {
         public TestItemInfo ItemInfo;
@@ -144,23 +127,9 @@ namespace Nile.Definition
         }
     }
 
-    //public class TestItemRead : TestItemBase
-    //{
-    //    public string GUID { get; set; }
-    //    public new TestItemInfoRead ItemInfo { get; set; }
-
-    //    public int PointCount { get { return OutputSpec.Count; } }
-    //    public int InputItemCount { get { return Input.Count; } }
-
-    //    public TestItemRead()
-    //    { }
-
-    //    public TestItemRead(string GUID, TestItemInfoBase ItemInfo, InputInfo InputInfo, OutputInfo OutputInfo)
-    //    {
-    //        this.GUID = GUID;
-    //    }
-    //}
-
+    /// <summary>
+    /// In basic, it's a list of all test item for DUT
+    /// </summary>
     public class TestPlan
     {
         public List<TestItem> Sequence;
@@ -172,16 +141,4 @@ namespace Nile.Definition
             Properties = new Dictionary<string, string>();
         }
     }
-    //public class TestPlan
-    //{
-    //    public List<TestItemRead> Sequence;
-    //    public Dictionary<string, string> Properties;
-    //    public string FullFileName { get; set; }
-
-    //    public TestPlan()
-    //    {
-    //        Sequence = new List<TestItemRead>();
-    //        Properties = new Dictionary<string, string>();
-    //    }
-    //}
 }

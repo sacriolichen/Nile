@@ -15,13 +15,12 @@ namespace Nile.Component
         #region public members
         protected Dictionary<string, object> ComponentOptions;
         /// <summary>
-        /// To get configuration for driver
+        /// To get configuration for driver. Each driver use this method to get initial setting.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="Name">Session name, like ITest</param>
         /// <param name="Mandatory">The input is mandatory (true) or not (false).</param>
-        /// <param name="Input">expected input</param>
         /// <param name="DefaultValue">The fault value in case of absent in input list and mandatory.</param>
+        /// <returns>The data as type object for specified Name</returns>
         protected object GetConfig(string Name, bool Mandatory, object DefaultValue)
         {
             try
@@ -67,6 +66,7 @@ namespace Nile.Component
         /// <param name="options">This object array can be used to define instrument dependant
         /// options.  The user should refer to the documentation for the specific 
         /// implementation for a description of what this parameter is expected to contain.</param>
+        /// <remarks> It's better to be called before overrided method.</remarks>
         public virtual void Initialize(Dictionary<string, object> Options)
         {
             if (IsInitialized == true)

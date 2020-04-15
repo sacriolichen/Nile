@@ -7,6 +7,9 @@ using Nile.Definition;
 
 namespace Nile.Component
 {
+    /// <summary>
+    /// A demo driver
+    /// </summary>
     public class PrintArea : ComponentBase, IArea
     {
         private int Size;
@@ -16,6 +19,9 @@ namespace Nile.Component
         #region public member
         public PrintArea()
         {
+            Size = 0;
+            Length = 0;
+            Area = 0;
         }
 
         public double Circle(double Radius)
@@ -42,12 +48,10 @@ namespace Nile.Component
         public override bool IsInitialized { get; set; }
         public override void Initialize(Dictionary<string, object> Options)
         {
+            //call base method to initialize variable.
             base.Initialize(Options);
             try
             {
-                Size = 0;
-                Length = 0;
-                Area = 0;
                 Size = Convert.ToInt32( GetConfig("Size", true, 0));
                 Length = Convert.ToInt32(GetConfig("Length", true, 10));
                 Area = Convert.ToInt32(GetConfig("area", false, -1));

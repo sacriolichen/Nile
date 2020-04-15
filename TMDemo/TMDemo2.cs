@@ -1,4 +1,27 @@
-﻿using Nile.Definition;
+﻿/*******************************************************************************\
+                                  '                                                     
+                           '                                                            
+                                     °                                                 
+                /¯¯¯¯\    °                                                            
+    '|\¯¯¯¯\/'/|       '|'  ____    °  /¯¯¯¯/|                                         
+    '|;'|       '/'/       /| |\____\ '   '|       |;|             '/¯¯¯¯/|¯¯¯¯|        
+     '/       /'/       /;'| /¯¯¯¯¯/|  '|\      '\|    '        |       |;|       |     
+    /       /'/       /;;'/ '|        '|;|   '|;'\       \            |       |/____/|  
+  '/       /'/       /;;'/'  '|\        \| '  '\;|       |/¯¯¯¯/|  |       |;|¯¯¯¯|     
+  |____|;|____|;;/    '|;\_____\'   '/____/|____'|'|  |\____\|____|                     
+  |       |/|       |/       \;|         |   |       |;|       '|/' |;|       ||      '|
+  |____| |____|         \|_____|    |____|/|____'| ° '\|____||____| '                  
+*********************************************************************************
+*   File name:  TMDemo2.cs
+*   Document no:
+*   Document ver:
+*   Design Responsible: 12234871
+*   Description: [Description("Demo of test method to calc area")]
+*   Date: 4/12/2020 11:29:47 AM
+* 
+*   COPYRIGHT (C) Update later                                                 *
+\*******************************************************************************/
+using Nile.Definition;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +31,7 @@ using System.Threading.Tasks;
 
 namespace Nile.TestMethod
 {
+    //A demo TM, calling driver and adding/getting data to/from DataTable
     public class TMDemo2 : TestClassBase
     {
         IArea pIArea = null;

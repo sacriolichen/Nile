@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verification", "..\Verifica
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDemo", "..\TMDemo\TMDemo.csproj", "{F10CF311-2FAB-41BB-8739-4352CC80C743}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculation", "..\Caculation\Calculation.csproj", "{D5EAFAA7-E20F-4A77-9A79-9BAA8A825E3A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SessionManagement", "..\Nile.SessionManagement\SessionManagement.csproj", "{2DA0F37F-EF16-4E27-9433-7271B8AC1B34}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonComponent", "..\CommonComponent\CommonComponent.csproj", "{D53C5765-1BF2-4930-B76E-F45F9BA8203C}"
@@ -91,14 +89,6 @@ Global
 		{F10CF311-2FAB-41BB-8739-4352CC80C743}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F10CF311-2FAB-41BB-8739-4352CC80C743}.Release|x64.ActiveCfg = Release|Any CPU
 		{F10CF311-2FAB-41BB-8739-4352CC80C743}.Release|x64.Build.0 = Release|Any CPU
-		{D5EAFAA7-E20F-4A77-9A79-9BAA8A825E3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D5EAFAA7-E20F-4A77-9A79-9BAA8A825E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D5EAFAA7-E20F-4A77-9A79-9BAA8A825E3A}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D5EAFAA7-E20F-4A77-9A79-9BAA8A825E3A}.Debug|x64.Build.0 = Debug|Any CPU
-		{D5EAFAA7-E20F-4A77-9A79-9BAA8A825E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D5EAFAA7-E20F-4A77-9A79-9BAA8A825E3A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D5EAFAA7-E20F-4A77-9A79-9BAA8A825E3A}.Release|x64.ActiveCfg = Release|Any CPU
-		{D5EAFAA7-E20F-4A77-9A79-9BAA8A825E3A}.Release|x64.Build.0 = Release|Any CPU
 		{2DA0F37F-EF16-4E27-9433-7271B8AC1B34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2DA0F37F-EF16-4E27-9433-7271B8AC1B34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DA0F37F-EF16-4E27-9433-7271B8AC1B34}.Debug|x64.ActiveCfg = Debug|Any CPU

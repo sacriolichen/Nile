@@ -62,7 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ICommonComponent.cs" />
-    <Compile Include="ICommonInstrument.cs" />
     <Compile Include="CommonTags.cs" />
     <Compile Include="IDataTable.cs" />
     <Compile Include="IDemo.cs" />

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Nile.Definition
 {
+    /// <summary>
+    /// Compare rules
+    /// </summary>
     public enum ResultCompareRules
     {
         NoVerication    = 0,
@@ -17,6 +20,10 @@ namespace Nile.Definition
         LL              = 6,    // limit1 < value < limit2
         LELE            = 7,    // limit1 <= value <= limit2
     }
+
+    /// <summary>
+    /// Supported value type of  test result 
+    /// </summary>
     public enum ResultValueTypes
     {
         //unknown
@@ -31,6 +38,9 @@ namespace Nile.Definition
         Bool = 4
     }
 
+    /// <summary>
+    /// The result of test value judgement against limit(s)
+    /// </summary>
     public enum TestPointResult
     {
         Unknown = 0,
@@ -39,6 +49,11 @@ namespace Nile.Definition
         NoVerification = 3,
         NotAvailable = 4
     }
+
+    /// <summary>
+    /// It defined all necessary info of test point result, which used for 
+    /// data exchange with external modules 
+    /// </summary>
     class PointResult:Dictionary<string, string>
     {
         public string PointResult_TestName { get; set; }
@@ -52,6 +67,7 @@ namespace Nile.Definition
         public string PointResult_ValueType { get; set; }
         public string PointResult_CompareRule { get; set; }
 
+        //Initialize variant
         public PointResult()
         {
             this.Add(CommonTags.TestResult_PointName, "");
@@ -63,6 +79,14 @@ namespace Nile.Definition
             this.Add(CommonTags.TestResult_CompareRule, "");
         }
 
+        /// <summary>
+        /// Initialize instance with data.
+        /// </summary>
+        /// <param name="PointSpec"></param>
+        /// <param name="value"></param>
+        /// <param name="ItemName"></param>
+        /// <param name="StartTime"></param>
+        /// <param name="EndTime"></param>
         public PointResult(Dictionary<string, object> PointSpec, object value, string ItemName, DateTime StartTime, DateTime EndTime)
         {
             try

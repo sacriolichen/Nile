@@ -23,10 +23,10 @@ namespace Nile
 
             #region Init core sessions
             SessionManager sm = new SessionManager("SessionMapSample.json");
-            CoreParams.Add("SessionManager", sm);
+            CoreParams.Add(CommonTags.CoreData_SessionManage, sm);
 
             RsrDataTable DataTable = new RsrDataTable();
-            CoreParams.Add("DataTable", DataTable);
+            CoreParams.Add(CommonTags.CoreData_DataTable, DataTable);
             #endregion
 
             Processor processor = new Processor(TP, DUT, CoreParams);

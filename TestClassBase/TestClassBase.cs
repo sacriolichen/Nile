@@ -38,12 +38,14 @@ namespace Nile.TestMethod
         public TestClassBase(Hashtable TestParams)
         {
             Init();
+
+            //import core data
             CoreData = TestParams;
 
             try
             {
-                pISessionManagement = (ISessionManagement)GetCoreInterface("SessionManager");
-                pIDataTable = (IDataTable)GetCoreInterface("DataTable");
+                pISessionManagement = (ISessionManagement)GetCoreInterface(CommonTags.CoreData_SessionManage);
+                pIDataTable = (IDataTable)GetCoreInterface(CommonTags.CoreData_DataTable);
             }
             catch (Exception ex)
             {
@@ -51,6 +53,10 @@ namespace Nile.TestMethod
             }
         }
 
+        /// <summary>
+        /// seems useless
+        /// </summary>
+        /// <returns></returns>
         internal int CreateInstance()
         {
             try

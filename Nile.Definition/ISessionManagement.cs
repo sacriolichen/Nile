@@ -59,6 +59,7 @@ namespace Nile.Definition
     /// to store the file name and class name which support an interface
     /// <para="File">File name without folder</para>
     /// <para="Class">Test method name</para>
+    /// <para="Configration>Initial settings</para>
     /// </summary>
     public struct SessionInput
     {

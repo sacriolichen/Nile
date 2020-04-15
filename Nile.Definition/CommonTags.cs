@@ -52,5 +52,9 @@ namespace Nile.Definition
         //common
         public static string Common_LongDateTime = "yyyyMMdd-HHmmss.ffff";
         public static string Common_ExecutionID = "ExecutionID";//An unique ID (GUID) to identify each test plan running.
+
+        //CoreData
+        public static string CoreData_SessionManage = "SessionManage";
+        public static string CoreData_DataTable = "DataTable";
     }
 }
