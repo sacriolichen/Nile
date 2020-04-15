@@ -1,0 +1,22 @@
+{
+  "SessionMapping":{
+    "IArea_1": {
+      "File": "DriverDemo.dll",
+      "Class": "PrintArea",
+      "Configuration": {
+        "Size": 1,
+        "Length": 23,
+        "Area": -1
+      }
+    },
+  "IMeasCurrent_1": {
+    "File": "MeasureCurrent.dll",
+    "Class": "DCCurrent",
+    "Configuration": {
+      "CurrentMode": "DC",
+      "Volatage": 23,
+      "Address": "USB3"
+      }
+    }
+  }
+}

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4625BE0A-3C1D-4925-9646-F6F79F7D62B0}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Verification</RootNamespace>
+    <AssemblyName>Verification</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MethodProcessor\MethodProcessor.csproj">
+      <Project>{98bd0074-529e-499f-8a47-244dd70cc1d0}</Project>
+      <Name>MethodProcessor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nile.Definition\Nile.Definition.csproj">
+      <Project>{840fb11f-ec93-4367-aeaa-8a900e92b050}</Project>
+      <Name>Nile.Definition</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nile.SessionManagement\SessionManagement.csproj">
+      <Project>{2da0f37f-ef16-4e27-9433-7271b8ac1b34}</Project>
+      <Name>SessionManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ResultReport\ResultReport.csproj">
+      <Project>{dd5f345b-07dd-4427-9855-852bd137ad7b}</Project>
+      <Name>ResultReport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rsrDataTable\rsrDataTable.csproj">
+      <Project>{0faf81f7-c0c9-4da6-b30d-7953dcbed6c8}</Project>
+      <Name>rsrDataTable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestClassBase\TestClassBase.csproj">
+      <Project>{feccfc73-d160-47aa-8a39-59cd1cc9261b}</Project>
+      <Name>TestClassBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestPlanReader\TestPlanReader.csproj">
+      <Project>{495df269-f271-4470-8cf0-e67ef5fecfef}</Project>
+      <Name>TestPlanReader</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

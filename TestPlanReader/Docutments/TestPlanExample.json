@@ -1,0 +1,112 @@
+{
+  "Sequence": [
+    {
+      "ItemInfo": {
+        "ItemName": "The frist test",
+        "FileName": "TMDemo.dll",
+        "Method": "TMDemo2"
+      },
+      "Input": {
+        "Radius": 12
+      },
+      "OutputSpec": [
+        {
+          "MeasPointID": "ABC1",
+          "MeasPointName": "The area of circle",
+          "Limit1": 1,
+          "Limit2": 20,
+          "ValueType": 2,
+          "CompareRule": 7,
+          "ValueUnit": "M2"
+        }
+      ]
+    },
+    {
+      "ItemInfo": {
+        "ItemName": "The second test",
+        "FileName": "TMDemo.dll",
+        "Method": "TMDemo2"
+      },
+      "Input": {
+        "Radius": 2
+      },
+      "OutputSpec": [
+        {
+          "MeasPointID": "EFG2",
+          "MeasPointName": "The area of circle",
+          "Limit1": 100,
+          "Limit2": 200,
+          "ValueType": 2,
+          "CompareRule": 7,
+          "ValueUnit": "mV"
+        }
+      ]
+    },
+    {
+      "ItemInfo": {
+        "ItemName": "The third test",
+        "FileName": "TMDemo.dll",
+        "Method": "TMDemo2"
+      },
+      "Input": {
+        "Any": 3
+      },
+      "OutputSpec": [
+        {
+          "MeasPointID": "GHI3",
+          "MeasPointName": "The area of circle",
+          "Limit1": 10,
+          "Limit2": "na",
+          "ValueType": 2,
+          "CompareRule": 1,
+          "ValueUnit": "mV"
+        }
+      ]
+    },
+    {
+      "ItemInfo": {
+        "ItemName": "The fourth test",
+        "FileName": "TMDemo.dll",
+        "Method": "TMDemo2"
+      },
+      "Input": {
+        "thing": 4
+      },
+      "OutputSpec": [
+        {
+          "MeasPointID": "JKL4",
+          "MeasPointName": "The area of circle",
+          "Limit1": 100,
+          "Limit2": 200,
+          "ValueType": 2,
+          "CompareRule": 5,
+          "ValueUnit": "mV"
+        }
+      ]
+    },
+    {
+      "ItemInfo": {
+        "ItemName": "The fifth test",
+        "FileName": "TMDemo.dll",
+        "Method": "TMDemo2"
+      },
+      "Input": {
+        "Any": 5
+      },
+      "OutputSpec": [
+        {
+          "MeasPointID": "MNO5",
+          "MeasPointName": "The area of circle",
+          "Limit1": 100,
+          "Limit2": 200,
+          "ValueType": 2,
+          "CompareRule": 3,
+          "ValueUnit": "mV"
+        }
+      ]
+    }
+  ],
+  "Properties": {
+    "EditTime": "16:57:51"
+  }
+}
