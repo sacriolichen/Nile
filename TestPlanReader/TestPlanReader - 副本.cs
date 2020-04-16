@@ -1,13 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
-//
-// Author: Chen, Changwei
-//
-//------------------------------------------------------------------------------
-//
-// class, TestPlanReader.
-//
-//------------------------------------------------------------------------------
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -54,13 +45,13 @@ namespace Nile.TestSequence
                     {
                         throw new Exception(string.Format("File {0} is not valid json format test plan.", FullFileName));
                     }
-                    foreach (TestItem tiItem in TP.Sequence)
+                    foreach (TestItemRead TIR in TP.Sequence)
                     {
                         string strGUID = Guid.NewGuid().ToString();
-                        //TIR.GUID = strGUID;
-                        //TIR.ItemInfo.GUID = strGUID;
+                        TIR.GUID = strGUID;
+                        TIR.ItemInfo.GUID = strGUID;
                     }
-                    //TP.FullFileName = FullFileName;
+                    TP.FullFileName = FullFileName;
                     return TP;
                 }
                 else
@@ -80,7 +71,7 @@ namespace Nile.TestSequence
         /// <param name="FileName"></param>
         /// <param name="TPW"></param>
         /// <returns></returns>
-        public static bool SaveJsonTestPlan(string FileName, TestPlan TPW)
+        public static bool SaveJsonTestPlan(string FileName, TestPlanBase TPW)
         {
             string strFileName = string.Empty;
             try
@@ -116,8 +107,6 @@ namespace Nile.TestSequence
                 JsonTextReader reader = new JsonTextReader(file);
                 JObject joTP = (JObject)JToken.ReadFrom(reader);
 
-                reader.Close();
-                file.Close();
                 return joTP;
             }
             catch (Exception ex)

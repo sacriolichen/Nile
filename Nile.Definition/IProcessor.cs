@@ -1,4 +1,13 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////////////////////
+//
+// Author: Chen, Changwei
+//
+//------------------------------------------------------------------------------
+//
+// interface, IProcessor.
+//
+//------------------------------------------------------------------------------
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Nile.Definition
 {
-    class IProcessor
+    class Processor
     {
     }
     public class ItemStartEventArgs : EventArgs

@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriverDemo", "..\DriverDemo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rsrDataTable", "..\rsrDataTable\rsrDataTable.csproj", "{0FAF81F7-C0C9-4DA6-B30D-7953DCBED6C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "..\Logger\Logger.csproj", "{F3BFC9C8-55E3-4984-B10E-7B3876D63E1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,14 @@ Global
 		{0FAF81F7-C0C9-4DA6-B30D-7953DCBED6C8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0FAF81F7-C0C9-4DA6-B30D-7953DCBED6C8}.Release|x64.ActiveCfg = Release|Any CPU
 		{0FAF81F7-C0C9-4DA6-B30D-7953DCBED6C8}.Release|x64.Build.0 = Release|Any CPU
+		{F3BFC9C8-55E3-4984-B10E-7B3876D63E1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3BFC9C8-55E3-4984-B10E-7B3876D63E1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3BFC9C8-55E3-4984-B10E-7B3876D63E1C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F3BFC9C8-55E3-4984-B10E-7B3876D63E1C}.Debug|x64.Build.0 = Debug|Any CPU
+		{F3BFC9C8-55E3-4984-B10E-7B3876D63E1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3BFC9C8-55E3-4984-B10E-7B3876D63E1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3BFC9C8-55E3-4984-B10E-7B3876D63E1C}.Release|x64.ActiveCfg = Release|Any CPU
+		{F3BFC9C8-55E3-4984-B10E-7B3876D63E1C}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

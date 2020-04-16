@@ -1,4 +1,13 @@
-﻿using Nile.Definition;
+﻿////////////////////////////////////////////////////////////////////////////////
+//
+// Author: Chen, Changwei
+//
+//------------------------------------------------------------------------------
+//
+// Base class, CommonComponent.
+//
+//------------------------------------------------------------------------------
+using Nile.Definition;
 using System;
 using System.Collections.Generic;
 using System.Linq;
