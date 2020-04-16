@@ -59,11 +59,16 @@ namespace Nile.Definition
         public static string TestResult_PointStatus_Un = "Unknown";
 
         //common
-        public static string Common_LongDateTime = "yyyyMMdd-HHmmss.ffff";
+        public static string Common_LongDateTime = "yyyyMMdd-HHmmss.fff";
         public static string Common_ExecutionID = "ExecutionID";//An unique ID (GUID) to identify each test plan running.
 
         //CoreData
         public static string CoreData_SessionManage = "SessionManage";
         public static string CoreData_DataTable = "DataTable";
+        public static string CoreData_DutInfo = "DutInfo";
+
+        //CoreData in session mapping file
+        public static string CoreData_Config_LogSeverity = "LogSeverities";
+        public static string CoreData_Config_LogPath = " LogFolder";
     }
 }

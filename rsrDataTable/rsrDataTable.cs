@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace Nile
 {
-    public class RsrDataTable : ICommonComponent, IDataTable
+    public class RsrDataTable : ComponentBase, ICommonComponent, IDataTable
     {
         Dictionary<int, Dictionary<string, object>> m_dictAll;
 
@@ -199,10 +199,10 @@ namespace Nile
             }
         }
 
-        public bool IsInitialized { get; set; }
-        public void Initialize(Dictionary<string, object> Options)
+        public override bool IsInitialized { get; set; }
+        public override void Initialize(Dictionary<string, object> Options)
         {
-            //base.Initialize(Options);
+            base.Initialize(Options);
             try
             {
                 if (m_dictAll == null)
@@ -217,17 +217,17 @@ namespace Nile
             this.IsInitialized = true;
         }
 
-        public void Reset()
+        public override void Reset()
         {
             string str = string.Format("");
             throw new System.NotImplementedException("To implemented once needed.");
         }
 
-        public void Send(string Command)
+        public override void Send(string Command)
         {
             throw new System.NotImplementedException("To implemented once needed.");
         }
-        public string Receive()
+        public override string Receive()
         {
             throw new System.NotImplementedException("To implemented once needed.");
         }

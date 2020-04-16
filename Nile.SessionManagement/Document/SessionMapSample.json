@@ -9,14 +9,19 @@
         "Area": -1
       }
     },
-  "IMeasCurrent_1": {
-    "File": "MeasureCurrent.dll",
-    "Class": "DCCurrent",
-    "Configuration": {
-      "CurrentMode": "DC",
-      "Volatage": 23,
-      "Address": "USB3"
+    "IMeasCurrent_1": {
+      "File": "MeasureCurrent.dll",
+      "Class": "DCCurrent",
+      "Configuration": {
+        "CurrentMode": "DC",
+        "Volatage": 23,
+        "Address": "USB3"
       }
+    }
+    "ILog_1": {
+      /*LogSeverities is the summary of: Unknown=1, Information=2,Warning=4,Important=8,Fator=16*/
+      "LogSeverities": 6,
+      "LogFolder": "c:\\Temp"
     }
   }
 }

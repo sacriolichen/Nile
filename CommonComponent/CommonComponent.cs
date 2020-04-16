@@ -82,7 +82,7 @@ namespace Nile.Component
             {
                 return;
             }
-            ComponentOptions = Options;
+            ComponentOptions = new Dictionary<string, object>(Options);
         }
 
         public virtual void Reset()

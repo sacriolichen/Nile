@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonComponent\CommonComponent.csproj">
+      <Project>{d53c5765-1bf2-4930-b76e-f45f9ba8203c}</Project>
+      <Name>CommonComponent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nile.Definition\Nile.Definition.csproj">
       <Project>{840fb11f-ec93-4367-aeaa-8a900e92b050}</Project>
       <Name>Nile.Definition</Name>
