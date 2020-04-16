@@ -15,6 +15,16 @@ using System.Threading.Tasks;
 
 namespace Nile.Definition
 {
+
+    #region ILog_SendEventHandler
+    /// <summary>
+    /// Delegate declarartion for the event.
+    /// </summary>
+    /// <param name="sender">The object that fired the event.</param>
+    /// <param name="data">An instance of the <see cref="LogSendEventArgs"/> class contianing the information on the send event.</param>
+    public delegate void ILog_SendEventHandler(object sender, LogSendEventArgs data);
+    #endregion
+
     #region LogSendEventArgs
     /// <summary>
     /// This class is used to encapsulate the data passed when logging a send event.
@@ -106,4 +116,14 @@ namespace Nile.Definition
         Fatal = 3,
     };
     #endregion
+
+    public interface ILog
+    {
+        /// <summary>
+        /// This method will save log txt to file
+        /// </summary>
+        /// <param name="sender">The object sent log message</param>
+        /// <param name="e">Event argument</param>
+        void OnLogReceived(object sender, LogSendEventArgs e);
+    }
 }

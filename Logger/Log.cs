@@ -19,7 +19,7 @@ using Nile.Definition;
 
 namespace Nile.Logger
 {
-    public class Log : ComponentBase, ICommonComponent, IDisposable//, ILogger
+    public class Log : ComponentBase, ILog, ICommonComponent, IDisposable//, ILogger
     {
         string SerialNumber { get; set; }
         string FileName { get; set; }
@@ -36,26 +36,22 @@ namespace Nile.Logger
         #region constructors
         public Log()
         {
-            FileName = BuildFileName(0, string.Empty, string.Empty);
         }
 
         public Log(string SerialNumber)
         {
             this.SerialNumber = SerialNumber;
-            FileName = BuildFileName(0, this.SerialNumber, string.Empty);
         }
 
         public Log(DutInfo DUT)
         {
             this.SerialNumber = DUT.SerialNumber;
             this.Position = DUT.Position;
-            FileName = BuildFileName(this.Position, this.SerialNumber, string.Empty);
         }
 
         public Log(DirectoryInfo Path)
         {
             this.Path = Path.FullName;
-            FileName = BuildFileName(0, string.Empty, this.Path);
         }
 
         public Log(DutInfo DUT, DirectoryInfo Path)
@@ -63,7 +59,7 @@ namespace Nile.Logger
             this.Path = Path.FullName;
             this.SerialNumber = DUT.SerialNumber;
             this.Position = DUT.Position;
-            FileName = BuildFileName(this.Position, this.SerialNumber, this.Path);
+            swLog = Open();
         }
 
         void IDisposable.Dispose()
@@ -78,11 +74,16 @@ namespace Nile.Logger
 
         ~Log()
         {
-            if (swLog != null)
+            try
             {
-                swLog.Close();
-                swLog.Dispose();
+                if (swLog != null)
+                {
+                    swLog.Close();
+                    swLog.Dispose();
+                }
             }
+            catch (Exception ex)
+            { }
             RenameLog();
         }
         #endregion
@@ -125,7 +126,7 @@ namespace Nile.Logger
                 {
                     if (true == string.IsNullOrEmpty(FileName))//file name is not initialized yet
                     {
-                        FileName = BuildFileName(0, string.Empty, string.Empty);
+                        FileName = BuildFileName(this.Position, this.SerialNumber, this.Path);
                     }
                     else//not empty, file name initialized 
                     {//do nothing
@@ -153,6 +154,10 @@ namespace Nile.Logger
         /// <param name="Text">log text without time stamp</param>
         private void AppendLine(DateTime TimeStamp, string Text)
         {
+            if (swLog == null)
+            {
+                swLog = Open();
+            }
             swLog.WriteLine("[{0}]:\t{1}", TimeStamp.ToString(CommonTags.Common_LongDateTime), Text);
             swLog.Flush();
         }
@@ -163,6 +168,10 @@ namespace Nile.Logger
         /// <param name="Text">log text without time stamp</param>
         private void AppendLine(string Text)
         {
+            if (swLog == null)
+            {
+                swLog = Open();
+            }
             swLog.WriteLine("{0}", Text);
             swLog.Flush();
         }
@@ -269,7 +278,7 @@ namespace Nile.Logger
             //[20200413_144559.234]:    [error] [session] [text]
             try
             {
-                if (Array.IndexOf(CheckedSeverity, e.Severity) == -1)
+                if (Array.IndexOf(CheckedSeverity, Convert.ToInt32(e.Severity)) == -1)
                 {
                     //The debug msg is not required in initial settings.
                     return;

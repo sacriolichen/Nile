@@ -35,19 +35,21 @@ namespace Nile.Component
 
         public double Circle(double Radius)
         {
-            Console.WriteLine(string.Format("The area of the circle (r={0}) is {1}", Radius, Math.PI * Math.Pow(Radius, 2)));
+            Logging(DebugSeverityTypes.Info, "[Circle]:Radius={0}", Radius);
             return Math.PI * Math.Pow(Radius, 2);
         }
 
         public double Quadrate(double SideLength)
         {
+            Logging(DebugSeverityTypes.Info, "[Quadrate]:SideLength={0}", SideLength);
             Console.WriteLine(string.Format("The area of the quadrate (l={0}) is {1}", SideLength, Math.Pow(SideLength, 2)));
             Length = 0 - Length;
-            return Length * Math.Pow(SideLength, 2);
+            return Length * Math.Pow(SideLength, 1);
         }
 
         public double RegularTriangle(int sidelength)
         {
+            Logging(DebugSeverityTypes.Info, "[RegularTriangle]:sidelength={0}", sidelength);
             Console.WriteLine(string.Format("The area of the regular triangle (l={0}) is {1}", sidelength, 0.4330127 * Math.Pow(sidelength, 2)));
             return 0.4330127 * Math.Pow(sidelength, 2);
         }

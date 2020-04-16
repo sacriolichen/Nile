@@ -156,8 +156,21 @@ namespace Nile.SessionManagement
 
             try
             {
+                //get instance
                 objTest = NewInstance(SessionName, FileName, ClassName, Position);
                 this.Add(string.Format("{0}_{1}", SessionName, Position), objTest);
+                //set the session name to itself
+                ICommonComponent pICC = objTest as ICommonComponent;
+                pICC.SessionName = string.Format("{0}_{1}", SessionName, Position);
+                //set logger to session
+                string strLogSessionName = string.Format("ILog_{0}", Position);
+                foreach (DictionaryEntry de in this)
+                {
+                    if (true == strLogSessionName.Equals(Convert.ToString(de.Key)))
+                    {
+                        pICC.ILogSession = de.Value as ILog;
+                    }
+                }
                 return objTest;
             }
             catch (Exception ex)

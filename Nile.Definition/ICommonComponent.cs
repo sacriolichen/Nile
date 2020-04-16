@@ -38,6 +38,10 @@ namespace Nile.Definition
     public interface ICommonComponent
     {
         //--- Properties------------------------------------------------------------------------
+        /// <summary>
+        /// this string indicator itself by interfacename_positionnumber,
+        /// </summary>
+        string SessionName { get; set; }
 
         #region IsInitialized
         /// <summary>
@@ -45,6 +49,8 @@ namespace Nile.Definition
         /// <see cref="Initialize">Initialize</see> method has been called.
         /// </summary>
         bool IsInitialized { get; }
+
+        ILog ILogSession { set; }
         #endregion
 
         //--- Methods --------------------------------------------------------------------------

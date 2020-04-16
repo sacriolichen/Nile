@@ -15,6 +15,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Nile.Definition;
+using Nile.Logger;
 using Nile.TestSequence;
 using ResultReport;
 
@@ -51,8 +52,23 @@ namespace Nile
         {
             List<TestItem> listSequence = CurrentPlan.Sequence;
             Dictionary<string, string> dictProperties = CurrentPlan.Properties;
+            ISessionManagement pISM = null;
             try
             {
+                #region relative set for the thread
+                //inital log instance by sessionmanager
+                if (hashCoreParams.ContainsKey(CommonTags.CoreData_SessionManage))
+                {
+                    pISM = (ISessionManagement)hashCoreParams[CommonTags.CoreData_SessionManage];
+                }
+                Log logger = new Log(DUTInfo);
+                string strSessionName = string.Format("ILog_{0}", DUTInfo.Position);
+                object objLog = pISM.CreateSession("ILog", DUTInfo.Position); //create session and add it to sessionmanager 
+                pISM.InitializeSession("ILog", DUTInfo.Position);
+
+
+                #endregion
+
 
                 foreach (TestItem tirItem in listSequence)
                 {

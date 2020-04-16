@@ -17,11 +17,15 @@
         "Volatage": 23,
         "Address": "USB3"
       }
-    }
+    },
     "ILog_1": {
       /*LogSeverities is the summary of: Unknown=1, Information=2,Warning=4,Important=8,Fator=16*/
-      "LogSeverities": 6,
-      "LogFolder": "c:\\Temp"
+      "File": "logger.dll",
+      "Class": "Log",
+      "Configuration": {
+        "LogSeverities": 31,
+        "LogFolder": "c:\\Temp"
+      }
     }
   }
 }

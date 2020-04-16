@@ -16,13 +16,36 @@ using System.Threading.Tasks;
 
 namespace Nile.Component
 {
+    //delegate for log
+    public delegate void delegateLogSend(Object sender, LogSendEventArgs e);
     /// <summary>
     /// Base class for all instrument drivers and external library wrapper
     /// </summary>
     public class ComponentBase : ICommonComponent
     {
         #region public members
+        //protected ILog_SendEventHandler LoggingHandler;
+        protected delegateLogSend dlgtLogSend;
+        public ILog ILogSession { get; set; }
+
+        public ComponentBase()
+        {
+        }
+        protected void Logging(DebugSeverityTypes Severity, string TextFormat, params object[] param)
+        {
+            if (dlgtLogSend != null)
+            {
+                string strText = string.Format(TextFormat, param);
+                LogSendEventArgs e = new LogSendEventArgs(strText,
+                                                    DateTime.Now,
+                                                    Severity,
+                                                    this.SessionName);
+                dlgtLogSend(this, e);
+            }
+        }
+
         protected Dictionary<string, object> ComponentOptions;
+        public string SessionName { get; set; }
         /// <summary>
         /// To get configuration for driver. Each driver use this method to get initial setting.
         /// </summary>
@@ -82,7 +105,10 @@ namespace Nile.Component
             {
                 return;
             }
-            ComponentOptions = new Dictionary<string, object>(Options);
+            ComponentOptions = Options;
+
+            string position = SessionName.Substring(SessionName.LastIndexOf('_') + 1);
+            dlgtLogSend += new delegateLogSend(ILogSession.OnLogReceived);
         }
 
         public virtual void Reset()

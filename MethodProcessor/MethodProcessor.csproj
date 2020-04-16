@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Logger\Logger.csproj">
+      <Project>{f3bfc9c8-55e3-4984-b10e-7b3876d63e1c}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nile.Definition\Nile.Definition.csproj">
       <Project>{840fb11f-ec93-4367-aeaa-8a900e92b050}</Project>
       <Name>Nile.Definition</Name>

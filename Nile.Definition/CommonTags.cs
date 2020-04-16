@@ -69,6 +69,6 @@ namespace Nile.Definition
 
         //CoreData in session mapping file
         public static string CoreData_Config_LogSeverity = "LogSeverities";
-        public static string CoreData_Config_LogPath = " LogFolder";
+        public static string CoreData_Config_LogPath = "LogFolder";
     }
 }
