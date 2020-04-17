@@ -62,9 +62,18 @@ namespace Nile
                     pISM = (ISessionManagement)hashCoreParams[CommonTags.CoreData_SessionManage];
                 }
                 Log logger = new Log(DUTInfo);
-                string strSessionName = string.Format("ILog_{0}", DUTInfo.Position);
-                object objLog = pISM.CreateSession("ILog", DUTInfo.Position); //create session and add it to sessionmanager 
-                pISM.InitializeSession("ILog", DUTInfo.Position);
+                string strSessionName = "ILog";
+                ///TODO:
+                ///Log is necessary?
+                if (true == pISM.AddSession(string.Format("{0}_{1}", strSessionName, DUTInfo.Position), logger))
+                {
+                    pISM.InitializeSession(strSessionName, DUTInfo.Position);
+                }
+                else
+                {
+                    throw new Exception(string.Format("{0} exists or session is not created.", strSessionName));
+                }
+                //object objLog = pISM.CreateSession("ILog", DUTInfo.Position); //create session and add it to sessionmanager 
 
 
                 #endregion

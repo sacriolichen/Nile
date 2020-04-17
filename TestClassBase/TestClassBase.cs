@@ -18,16 +18,22 @@ using System.Collections;
 
 namespace Nile.TestMethod
 {
+    //delegate for log
+    public delegate void delegateLogSend(Object sender, LogSendEventArgs e);
     //public class TestClassBase : ITestClass
     public class TestClassBase
     {
         protected int refID;
         protected Type instanceType;
         protected object testInstance;
+        protected string tmName;
+
         //public ArrayList Input { get; protected set; }
 
+        //event and delegate
         public delegate void Send2LogEventHanler(object sender, Send2LogEventArgs send2LogEvArgs);
         public event Send2LogEventHanler eventSent2Log;
+        protected delegateLogSend dlgtLogSend;
 
         protected ArrayList Output;
         protected Dictionary<string, object> InputDictionary;
@@ -35,6 +41,7 @@ namespace Nile.TestMethod
         #region Core data
         private ISessionManagement pISessionManagement;
         protected IDataTable pIDataTable;
+        protected ILog pILog;
         private Hashtable CoreData;
         protected int Position;
         #endregion
@@ -53,12 +60,35 @@ namespace Nile.TestMethod
 
             try
             {
-                pISessionManagement = (ISessionManagement)GetCoreInterface(CommonTags.CoreData_SessionManage);
-                pIDataTable = (IDataTable)GetCoreInterface(CommonTags.CoreData_DataTable);
+                pISessionManagement = GetCoreInterface(CommonTags.CoreData_SessionManage) as ISessionManagement;
+                pILog = pISessionManagement.GetSessionByName("ILog", Position) as ILog;
+                pIDataTable = GetCoreInterface(CommonTags.CoreData_DataTable) as IDataTable;
+
+                dlgtLogSend += new delegateLogSend(pILog.OnLogReceived);
+
             }
             catch (Exception ex)
             {
 
+            }
+        }
+
+        /// <summary>
+        /// This method will collect data and call the trigger of event
+        /// </summary>
+        /// <param name="Severity">Severity of message</param>
+        /// <param name="TextFormat">text format</param>
+        /// <param name="param">variant value in text format</param>
+        protected void Logging(DebugSeverityTypes Severity, string TextFormat, params object[] param)
+        {
+            if (dlgtLogSend != null)
+            {
+                string strText = string.Format(TextFormat, param);
+                LogSendEventArgs e = new LogSendEventArgs(strText,
+                                                    DateTime.Now,
+                                                    Severity,
+                                                    tmName);
+                dlgtLogSend(this, e);
             }
         }
 

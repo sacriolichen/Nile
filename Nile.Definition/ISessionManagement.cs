@@ -62,6 +62,14 @@ namespace Nile.Definition
         /// <param name="SessionName">The name (usually, interface name) of session without position number</param>
         /// <param name="Position">Position number</param>
         void InitializeSession(string SessionName, int Positions);
+
+        ///<Summary>
+        ///Add new session(instance) to session manager
+        ///</Summary>
+        ///<param name="SessionName">The name of session including position number</param>
+        ///<param name="Session">The created session outside SessionManager </param>
+        ///<returns>Return false if Name exists or session is null. Otherwise, return true</returns>
+        bool AddSession(string SessionName, object Session);
     }
 
     /// <summary>

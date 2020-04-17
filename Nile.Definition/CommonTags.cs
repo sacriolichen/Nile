@@ -65,6 +65,7 @@ namespace Nile.Definition
         //CoreData
         public static string CoreData_SessionManage = "SessionManage";
         public static string CoreData_DataTable = "DataTable";
+        public static string CoreData_ILog = "ILog";
         public static string CoreData_DutInfo = "DutInfo";
 
         //CoreData in session mapping file

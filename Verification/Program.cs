@@ -31,6 +31,29 @@ namespace Nile
 
             Processor processor = new Processor(TP, DUT, CoreParams);
             processor.PlanExecution();
+
+
+            #region Clear sessions after test
+            ///TODO:
+            ///reset instead of dispose?
+            lock (sm)
+            {
+                List<string> listToRemove = new List<string>();
+                foreach (DictionaryEntry de in sm)
+                {
+                    string strName = Convert.ToString(de.Key);
+                    if (strName.EndsWith(DUT.Position.ToString()))
+                    {
+                        listToRemove.Add(strName);
+                    }
+                }
+                foreach (string strName in listToRemove)
+                {
+                    string strSessionName = strName.Substring(0, strName.LastIndexOf('_'));
+                    sm.Remove(strSessionName, DUT.Position);
+                }
+            }
+            #endregion
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Nile.Logger
         string SerialNumber { get; set; }
         string FileName { get; set; }
         int Position { get; set; }
-        DateTime StartTime { get; set; }
+        DateTime StartTime { get;}
         string Path { get; set; }
         private StreamWriter swLog = null;
         private int[] CheckedSeverity = null;
@@ -36,40 +36,51 @@ namespace Nile.Logger
         #region constructors
         public Log()
         {
+            this.StartTime = DateTime.Now;
         }
 
         public Log(string SerialNumber)
         {
+            this.StartTime = DateTime.Now;
             this.SerialNumber = SerialNumber;
         }
 
         public Log(DutInfo DUT)
         {
+            this.StartTime = DateTime.Now;
             this.SerialNumber = DUT.SerialNumber;
             this.Position = DUT.Position;
         }
 
         public Log(DirectoryInfo Path)
         {
+            this.StartTime = DateTime.Now;
             this.Path = Path.FullName;
         }
 
         public Log(DutInfo DUT, DirectoryInfo Path)
         {
+            this.StartTime = DateTime.Now;
             this.Path = Path.FullName;
             this.SerialNumber = DUT.SerialNumber;
             this.Position = DUT.Position;
-            swLog = Open();
+            //swLog = Open();
         }
 
         void IDisposable.Dispose()
         {
-            if (swLog != null)
+            try
             {
-                swLog.Close();
-                swLog.Dispose();
+                if (swLog != null)
+                {
+                    RenameLog();
+                    swLog.Close();
+                    swLog.Dispose();
+                    swLog = null;
+                }
             }
-            RenameLog();
+            catch (Exception ex)
+            { }
         }
 
         ~Log()
@@ -78,13 +89,13 @@ namespace Nile.Logger
             {
                 if (swLog != null)
                 {
+                    RenameLog();
                     swLog.Close();
                     swLog.Dispose();
                 }
             }
             catch (Exception ex)
             { }
-            RenameLog();
         }
         #endregion
 
@@ -93,24 +104,31 @@ namespace Nile.Logger
         {
             string strDut = "DUT";
             string strSerial = "_Serial_";
-            StartTime = DateTime.Now;
-            string strTime = StartTime.ToString(CommonTags.Common_LongDateTime);
 
-            if (Position >= 1)
-            {
-                strDut = string.Format("{0}{1}", strDut, Position);
+            try
+             {
+                string strTime = this.StartTime.ToString(CommonTags.Common_LongDateTime);
+
+                if (Position >= 1)
+                {
+                    strDut = string.Format("{0}{1}", strDut, Position);
+                }
+                if (false == string.IsNullOrEmpty(SerialNumber))
+                {
+                    strSerial = strSerial.Replace("Serial", SerialNumber);
+                }
+                if (true == System.IO.Directory.Exists(Path))
+                {
+                    return System.IO.Path.Combine(Path, string.Format("{0}{1}{2}.log", strDut, strSerial, strTime));
+                }
+                else
+                {
+                    return System.IO.Path.Combine(this.GetType().Assembly.Location, string.Format("{0}{1}{2}.log", strDut, strSerial, strTime));
+                }
             }
-            if (false == string.IsNullOrEmpty(SerialNumber))
+            catch (Exception ex)
             {
-                strSerial= strSerial.Replace("Serial", SerialNumber);
-            }
-            if (true == System.IO.Directory.Exists(Path))
-            {
-                return System.IO.Path.Combine(Path, string.Format("{0}{1}{2}.log", strDut, strSerial, strTime));
-            }
-            else
-            {
-                return System.IO.Path.Combine(this.GetType().Assembly.Location, string.Format("{0}{1}{2}.log", strDut, strSerial, strTime));
+                throw new Exception(string.Format("{0}->{1}", System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name, ex.Message));
             }
         }
 
@@ -154,12 +172,27 @@ namespace Nile.Logger
         /// <param name="Text">log text without time stamp</param>
         private void AppendLine(DateTime TimeStamp, string Text)
         {
-            if (swLog == null)
-            {
-                swLog = Open();
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //Absolutly not logging itself!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //Absolutly not logging itself!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //Absolutly not logging itself!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            try
+            { 
+                if (swLog == null)
+                {
+                    swLog = Open();
+                }
+                swLog.WriteLine("[{0}]:\t{1}", TimeStamp.ToString(CommonTags.Common_LongDateTime), Text);
+                swLog.Flush();
             }
-            swLog.WriteLine("[{0}]:\t{1}", TimeStamp.ToString(CommonTags.Common_LongDateTime), Text);
-            swLog.Flush();
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format("{0}->{1}", System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name, ex.Message));
+            }
         }
 
         /// <summary>
@@ -168,12 +201,30 @@ namespace Nile.Logger
         /// <param name="Text">log text without time stamp</param>
         private void AppendLine(string Text)
         {
-            if (swLog == null)
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //Absolutly not logging itself!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //Absolutly not logging itself!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //Absolutly not logging itself!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+            try 
             {
-                swLog = Open();
+                //Logging(DebugSeverityTypes.Fatal, "to log:{0}", Text);
+                if (swLog == null)
+                {
+                    swLog = Open();
+                }
+                swLog.WriteLine("{0}", Text);
+                swLog.Flush();
             }
-            swLog.WriteLine("{0}", Text);
-            swLog.Flush();
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format("{0}->{1}", System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name, ex.Message));
+            }
         }
 
         /// <summary>
@@ -274,6 +325,14 @@ namespace Nile.Logger
         #region public member
         public void OnLogReceived(object sender, LogSendEventArgs e)
         {
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //Absolutly not logging itself!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //Absolutly not logging itself!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //Absolutly not logging itself!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //log example:
             //[20200413_144559.234]:    [error] [session] [text]
             try
@@ -286,7 +345,7 @@ namespace Nile.Logger
                 string strSeverity = string.Empty;
                 switch (e.Severity)
                 {
-                    case DebugSeverityTypes.Unknown: strSeverity = "Unknown\t\t";
+                    case DebugSeverityTypes.Unknown: strSeverity = "Unknown\t";
                         break;
                     case DebugSeverityTypes.Info: strSeverity = "Info\t\t";
                         break;
@@ -314,7 +373,13 @@ namespace Nile.Logger
         public override bool IsInitialized { get; set; }
         public override void Initialize(Dictionary<string, object> Options)
         {
-            base.Initialize(Options);
+            //base.Initialize(Options);
+            if (IsInitialized == true)
+            {
+                return;
+            }
+            ComponentOptions = Options;
+
             try
             {
                 if (this.ComponentOptions.ContainsKey(CommonTags.CoreData_Config_LogSeverity))

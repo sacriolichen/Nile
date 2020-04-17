@@ -43,6 +43,7 @@ namespace Nile.TestMethod
 
         public TMDemo2(Hashtable TestParams) : base(TestParams)
         {
+            tmName = this.GetType().Name;
             pIArea = (IArea)GetInterface("IArea");
         }
 
@@ -62,7 +63,9 @@ namespace Nile.TestMethod
                 {
                     oldvalue = Convert.ToInt32(pIDataTable.GetValue("OldValue", Position));
                 }
+
                 double d = oldvalue * pIArea.Quadrate(Convert.ToDouble(kvp.Value));
+                Logging(DebugSeverityTypes.Important, "d:{0}\tSideLength={1}", d, kvp.Value);
 
                 if (true == pIDataTable.ValueExists("OldValue", Position))
                 {

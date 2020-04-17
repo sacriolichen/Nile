@@ -163,14 +163,19 @@ namespace Nile.SessionManagement
                 ICommonComponent pICC = objTest as ICommonComponent;
                 pICC.SessionName = string.Format("{0}_{1}", SessionName, Position);
                 //set logger to session
-                string strLogSessionName = string.Format("ILog_{0}", Position);
-                foreach (DictionaryEntry de in this)
-                {
-                    if (true == strLogSessionName.Equals(Convert.ToString(de.Key)))
+//                if (false == pICC.SessionName.ToLower().StartsWith("ilog"))
+                {//if not ilog itself
+                    string strLogSessionName = string.Format("ILog_{0}", Position);
+                    foreach (DictionaryEntry de in this)
                     {
-                        pICC.ILogSession = de.Value as ILog;
+                        if (true == strLogSessionName.Equals(Convert.ToString(de.Key)))
+                        {
+                            pICC.ILogSession = de.Value as ILog;
+                            break;
+                        }
                     }
                 }
+
                 return objTest;
             }
             catch (Exception ex)
@@ -226,6 +231,9 @@ namespace Nile.SessionManagement
                 {
                     ///TODO:
                     ///call driver Dispose or Close or destructor function here 
+                    if (this[strName] is IDisposable)
+                        ((IDisposable)this[strName]).Dispose();
+
                     this.Remove(strName);
                 }
                 else
@@ -266,6 +274,25 @@ namespace Nile.SessionManagement
                     pICC.Initialize(dictSessionConfig);
                     return;
                 }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format("{0}. -> {1}",
+                                    System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName,
+                                    ex.Message));
+            }
+        }
+
+        public bool AddSession(string SessionName, object Session)
+        {
+            try
+            {
+                if (this.ContainsKey(SessionName) || Session == null)
+                {//name exists or session is null
+                    return false;
+                }
+                this.Add(SessionName, Session);
+                return true;
             }
             catch (Exception ex)
             {

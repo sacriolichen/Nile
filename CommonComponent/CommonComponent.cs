@@ -24,16 +24,22 @@ namespace Nile.Component
     public class ComponentBase : ICommonComponent
     {
         #region public members
-        //protected ILog_SendEventHandler LoggingHandler;
         protected delegateLogSend dlgtLogSend;
         public ILog ILogSession { get; set; }
 
         public ComponentBase()
         {
         }
+
+        /// <summary>
+        /// This method will collect data and call the trigger of event
+        /// </summary>
+        /// <param name="Severity">Severity of message</param>
+        /// <param name="TextFormat">text format</param>
+        /// <param name="param">variant value in text format</param>
         protected void Logging(DebugSeverityTypes Severity, string TextFormat, params object[] param)
         {
-            if (dlgtLogSend != null)
+            if (dlgtLogSend != null && ILogSession != null)
             {
                 string strText = string.Format(TextFormat, param);
                 LogSendEventArgs e = new LogSendEventArgs(strText,
