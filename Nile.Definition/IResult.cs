@@ -76,7 +76,7 @@ namespace Nile.Definition
         public string PointResult_ValueType { get; set; }
         public string PointResult_CompareRule { get; set; }
 
-        //Initialize variant
+        //Initialize variable
         public PointResult()
         {
             this.Add(CommonTags.TestResult_PointName, "");

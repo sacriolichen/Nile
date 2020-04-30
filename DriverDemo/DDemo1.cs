@@ -19,7 +19,7 @@ namespace Nile.Component
     /// <summary>
     /// A demo driver
     /// </summary>
-    public class PrintArea : ComponentBase, IArea
+    public class PrintArea : ComponentBase, IArea, IDisposable
     {
         private int Size;
         private int Length;
@@ -49,6 +49,7 @@ namespace Nile.Component
 
         public double RegularTriangle(int sidelength)
         {
+            //Add log here
             Logging(DebugSeverityTypes.Info, "[RegularTriangle]:sidelength={0}", sidelength);
             Console.WriteLine(string.Format("The area of the regular triangle (l={0}) is {1}", sidelength, 0.4330127 * Math.Pow(sidelength, 2)));
             return 0.4330127 * Math.Pow(sidelength, 2);
@@ -56,6 +57,11 @@ namespace Nile.Component
         #endregion
 
         #region interface member
+        void IDisposable.Dispose()
+        {
+            //To release resource here
+        }
+
         public override bool IsInitialized { get; set; }
         public override void Initialize(Dictionary<string, object> Options)
         {

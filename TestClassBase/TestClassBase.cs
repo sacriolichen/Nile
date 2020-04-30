@@ -78,7 +78,7 @@ namespace Nile.TestMethod
         /// </summary>
         /// <param name="Severity">Severity of message</param>
         /// <param name="TextFormat">text format</param>
-        /// <param name="param">variant value in text format</param>
+        /// <param name="param">variable value in text format</param>
         protected void Logging(DebugSeverityTypes Severity, string TextFormat, params object[] param)
         {
             if (dlgtLogSend != null)
@@ -435,7 +435,7 @@ namespace Nile.TestMethod
 
         #region private member
         /// <summary>
-        /// Initialize global variant
+        /// Initialize global variable
         /// </summary>
         private void Init()
         {

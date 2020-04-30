@@ -41,7 +41,7 @@ namespace Nile.Definition
         /// <summary>
         /// this string indicator itself by interfacename_positionnumber,
         /// </summary>
-        string SessionName { get; set; }
+        //string SessionName { get; set; }
 
         #region IsInitialized
         /// <summary>
@@ -54,7 +54,18 @@ namespace Nile.Definition
         #endregion
 
         //--- Methods --------------------------------------------------------------------------
+        /// <summary>
+        /// This method will return SessionName(w/ position number) or interfacei name (w/o position number)
+        /// </summary>
+        /// <param name="IncludingPosition">Including Position number or not</param>
+        /// <returns>SessionName or interface name</returns>
+        string ToString(bool IncludingPosition);
 
+        /// <summary>
+        /// This method will parse session name to interface name and position name
+        /// </summary>
+        /// <param name="SessionName"></param>
+        void SetSessionName(string SessionName);
         #region Initialize
         /// <summary>
         /// When implmented by a driver, this method performs all of the necessary 

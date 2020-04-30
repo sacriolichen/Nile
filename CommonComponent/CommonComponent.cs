@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Nile.Component
@@ -23,12 +24,18 @@ namespace Nile.Component
     /// </summary>
     public class ComponentBase : ICommonComponent
     {
+        delegate bool Function(object objNull);
+        Function ObjectIsNull = delegate (object objNull) { return objNull == null; };
+
         #region public members
         protected delegateLogSend dlgtLogSend;
+        protected string InterfaceName;
+        protected int Position;
         public ILog ILogSession { get; set; }
 
         public ComponentBase()
         {
+            Position = -1;//default value. it should be greater than 0
         }
 
         /// <summary>
@@ -36,7 +43,7 @@ namespace Nile.Component
         /// </summary>
         /// <param name="Severity">Severity of message</param>
         /// <param name="TextFormat">text format</param>
-        /// <param name="param">variant value in text format</param>
+        /// <param name="param">variable value in text format</param>
         protected void Logging(DebugSeverityTypes Severity, string TextFormat, params object[] param)
         {
             if (dlgtLogSend != null && ILogSession != null)
@@ -45,13 +52,13 @@ namespace Nile.Component
                 LogSendEventArgs e = new LogSendEventArgs(strText,
                                                     DateTime.Now,
                                                     Severity,
-                                                    this.SessionName);
+                                                    this.ToString(true));
                 dlgtLogSend(this, e);
             }
         }
 
         protected Dictionary<string, object> ComponentOptions;
-        public string SessionName { get; set; }
+        //public string SessionName { get; set; }
         /// <summary>
         /// To get configuration for driver. Each driver use this method to get initial setting.
         /// </summary>
@@ -89,6 +96,20 @@ namespace Nile.Component
         #endregion
 
         #region private member
+        private void ParseSessionName(string SessionName)
+        {
+            Match match = Regex.Match(SessionName, "(I[A-Za-z0-9]+)_([0-9]+)");
+
+            if (match.Success)
+            {
+                this.Position = Convert.ToInt32(match.Groups[2].Value);
+                this.InterfaceName = Convert.ToString(match.Groups[1].Value);
+            }
+            else
+            {
+                throw new Exception(string.Format("{0} is not a valid Session Name", SessionName));
+            }
+        }
         #endregion
 
         #region interface member
@@ -97,6 +118,10 @@ namespace Nile.Component
         /// </summary>
         public virtual bool IsInitialized { get; set; }
 
+        public void SetSessionName(string SessionName)
+        {
+            ParseSessionName(SessionName);
+        }
         /// <summary>
         /// intialization for the user to be able to start using the instrument.
         /// It's common part. And also it's could be override by derived class. 
@@ -113,8 +138,32 @@ namespace Nile.Component
             }
             ComponentOptions = Options;
 
-            string position = SessionName.Substring(SessionName.LastIndexOf('_') + 1);
+
+            //string position = SessionName.Substring(SessionName.LastIndexOf('_') + 1);
             dlgtLogSend += new delegateLogSend(ILogSession.OnLogReceived);
+        }
+
+        /// <summary>
+        /// This method will return the name of the instance.
+        /// </summary>
+        /// <param name="IncludingPosition">If the position number is required</param>
+        /// <returns>return interface name when input false. Return interfance name with position number when input true</returns>
+        public string ToString(bool IncludingPosition)
+        {
+            //to check if position number and interfacename are given.
+            if (this.Position <= 0 || string.IsNullOrEmpty(this.InterfaceName))
+            {
+                throw new Exception("Position number or InterfaceName of the instance is not initialized.");
+            }
+
+            if (IncludingPosition)
+            {
+                return string.Format("{0}_{1}", this.InterfaceName, this.Position);
+            }
+            else
+            {
+                return this.InterfaceName;
+            }
         }
 
         public virtual void Reset()

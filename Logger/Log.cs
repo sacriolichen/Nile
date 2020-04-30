@@ -209,11 +209,10 @@ namespace Nile.Logger
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //Absolutly not logging itself!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //Logging(DebugSeverityTypes.Fatal, "to log:{0}", Text);
 
-
-            try 
+            try
             {
-                //Logging(DebugSeverityTypes.Fatal, "to log:{0}", Text);
                 if (swLog == null)
                 {
                     swLog = Open();
