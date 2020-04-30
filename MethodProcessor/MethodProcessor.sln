@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rsrDataTable", "..\rsrDataT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "..\Logger\Logger.csproj", "{F3BFC9C8-55E3-4984-B10E-7B3876D63E1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nile.MainUI", "..\Nile.MainUI\Nile.MainUI.csproj", "{99118861-69AA-45E0-B386-2D96D5E23CCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -131,6 +133,14 @@ Global
 		{F3BFC9C8-55E3-4984-B10E-7B3876D63E1C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F3BFC9C8-55E3-4984-B10E-7B3876D63E1C}.Release|x64.ActiveCfg = Release|Any CPU
 		{F3BFC9C8-55E3-4984-B10E-7B3876D63E1C}.Release|x64.Build.0 = Release|Any CPU
+		{99118861-69AA-45E0-B386-2D96D5E23CCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99118861-69AA-45E0-B386-2D96D5E23CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99118861-69AA-45E0-B386-2D96D5E23CCA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{99118861-69AA-45E0-B386-2D96D5E23CCA}.Debug|x64.Build.0 = Debug|Any CPU
+		{99118861-69AA-45E0-B386-2D96D5E23CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99118861-69AA-45E0-B386-2D96D5E23CCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99118861-69AA-45E0-B386-2D96D5E23CCA}.Release|x64.ActiveCfg = Release|Any CPU
+		{99118861-69AA-45E0-B386-2D96D5E23CCA}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
